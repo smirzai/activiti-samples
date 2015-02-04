@@ -8,6 +8,7 @@
     <property name="jdbcDriver" value="org.h2.Driver" />
     <property name="jdbcUsername" value="sa" />
     <property name="jdbcPassword" value="" />
+    <property name="jobExecutorActivate" value="false" />
   </bean>
 
 </beans>
