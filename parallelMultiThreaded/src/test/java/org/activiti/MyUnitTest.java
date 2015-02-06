@@ -6,41 +6,45 @@ import org.activiti.engine.impl.test.PluggableActivitiTestCase;
 import org.activiti.engine.impl.variable.VariableType;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.test.Deployment;
+import org.apache.log4j.Logger;
 
 public class MyUnitTest extends PluggableActivitiTestCase{
 	
 	public static long startTime = System.currentTimeMillis();
-	public static Integer[] counters = new Integer[1000];
+	public static Boolean[] processed = new Boolean[1000];
 	
-	
+	 static Logger log = Logger.getLogger(MyUnitTest.class);
+
 	
 	
 	@Deployment(resources = {"org/activiti/test/my-process.bpmn20.xml"})
 	public void test() throws InterruptedException {
+		processEngineConfiguration.getJobExecutor().start();
+		
+		// specific to this process. Maybe could be changed with processInstanceId and an hashmap instead of array
 		int index = 0;
 		Integer lock = new Integer(index);
-		counters[index] = 3;
+		processed[index] = false;
 		
 		
 		Map vars = new HashMap();
 		vars.put("lock", lock);
 		
+		
+		
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("my-process", vars);
-		System.out.println("processs returned");
+		log.info("Call to start process just returned. Starting wait loop");
 		assertNotNull(processInstance);
 
-		waitForJobExecutorToProcessAllJobs(5000, 100);
-		System.out.println("jobs finished");
-		try {
-			synchronized (lock) {
-				lock.wait();
+		synchronized (processed[index]) {
+			while (!processed[index]) { 
+				processed[index].wait();
 			}
-
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}
+		log.info("wait loop exited. Program finished");
+		
 		}
 		
-	}
+	
 
 }
