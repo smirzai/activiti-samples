@@ -1,1 +1,5 @@
-This is a Maven project which can be used as template when creating a unit test for Activiti.
+These project has some sample usages of activiti:
+
+ parallelMultiThreaded:
+    Shows how it is possible to run some tasks in different threads, wait for them to finish and return aggregated result synchronously.
+    Documentation avaialable in: http://blog.saeidmirzaei.com/?p=334
