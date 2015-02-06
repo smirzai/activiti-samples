@@ -14,7 +14,7 @@ public class AggregateService implements JavaDelegate {
 			log.error("lock varaible is null in processId=" + execution.getProcessInstanceId());
 			return;
 		}
-		log.info("All external ws calls returned. Try to unlock the lock");
+		log.info("All external ws calls returned. Try to unlock the lock. time = " +  (System.currentTimeMillis()- MyUnitTest.startTime));
 		Boolean obj = MyUnitTest.processed[lock];
 		
 		synchronized (obj) {

@@ -3,9 +3,9 @@
   <process id="my-process" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
-    <serviceTask id="servicetask1" name="Service Task" activiti:async="true" activiti:class="org.activiti.Service1"></serviceTask>
-    <serviceTask id="servicetask2" name="Service Task" activiti:async="true" activiti:class="org.activiti.Service2"></serviceTask>
-    <serviceTask id="servicetask3" name="Service Task" activiti:async="true" activiti:class="org.activiti.Service3"></serviceTask>
+    <serviceTask id="servicetask1" name="Service Task" activiti:async="true" activiti:class="org.activiti.Service1" activiti:exclusive="false" ></serviceTask>
+    <serviceTask id="servicetask2" name="Service Task" activiti:async="true" activiti:class="org.activiti.Service2" activiti:exclusive="false" ></serviceTask>
+    <serviceTask id="servicetask3" name="Service Task" activiti:async="true" activiti:class="org.activiti.Service3" activiti:exclusive="false" ></serviceTask>
     <parallelGateway id="parallelgateway2" name="Parallel Gateway"></parallelGateway>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow2" sourceRef="startevent1" targetRef="parallelgateway1"></sequenceFlow>

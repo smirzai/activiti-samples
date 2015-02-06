@@ -9,9 +9,9 @@ public class Service1 implements JavaDelegate{
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
-		log.info("Service 1 started, time = " + (System.currentTimeMillis() - MyUnitTest.startTime) / 1000);
+		log.info("Service 1 started, time = " + (System.currentTimeMillis() - MyUnitTest.startTime) );
 		Thread.sleep(1000);
-		log.info("Service 2 started, time = " + (System.currentTimeMillis() - MyUnitTest.startTime) / 1000);
+		log.info("Service 1 finished, time = " + (System.currentTimeMillis() - MyUnitTest.startTime) );
 	}
 
 }
